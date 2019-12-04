@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clones a personal fork of a repo, checks out the develop branch
+# sets upstream to a specified upstream_org (i.e. my employer)
+
 args=("$@")
 
 upstream_org="ctsit"
