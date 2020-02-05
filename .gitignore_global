@@ -1,0 +1,6 @@
+# Exclude Vim files
+.*.swp
+# Exclude Emacs files
+*~
+
+.DS_Store

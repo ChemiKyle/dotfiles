@@ -5,7 +5,13 @@
 set number          " cursor line number is absolute
 set relativenumber  " all other lines are relative to cursor
 set cursorline      " highlight cursor line
-set culopt=number   " but underline only the line number
+"set culopt=number   " but underline only the line number
+
+" no mouse use
+set mouse=
+
+set hlsearch        " highlight matching search
+set incsearch       " autonavigate to first match while searcing
 
 filetype plugin on  " specific language scopes in ~/.vim/after/ftplugin/
 
@@ -37,9 +43,12 @@ set clipboard=unnamed   " copy to system clipboard
 syntax on
 
 " additional color calls
-set term=xterm-256color
+"set term=xterm-256color
 set t_Co=256
 set background=dark
+
+" Make :term more meaningful
+"let $PS1='\u@\h:\w\$ '
 
 colorscheme darktooth256
 
@@ -73,10 +82,14 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0?''.l:branchname.' ':''
 endfunction
 
+" Graphical cues
+
+" Statusline
 " see :h statusline for %
 " see :h highlight for %##
 " :so $VIMRUNTIME/syntax/hitest.vim
 set statusline=
+set statusline+=%{winnr()}          " window number
 set statusline+=%#DiffChange#       " grey the next line
 set statusline+=%{StatuslineGit()}  " show git branch of selected file
 set statusline+=%#LineNr#           " no more grey
@@ -91,3 +104,17 @@ set statusline+=%#DiffText#         " no more grey
 set statusline+=%y                  " filetype
 "set statusline+=\ %{&fileencoding?&fileencoding:&encoding} "language/charset
 "set statusline+=\[%{&fileformat}\]  " unix,dos, etc.
+
+" Window indication
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set culopt=both      " underline whole line in focused window
+    autocmd WinLeave * set culopt=number    " underline only number in unfocused window
+augroup END
+
+
+"set runtimepath^=~/.vim/bundle/vdebug/
+"let g:vdebug_options = {
+"\'break_on_open' :  0,
+"\'path_maps': {'/var/www/html': '/Users/kyle.chesney/projects/redcap-docker-compose/rdc_shib/www'}
+"\}

@@ -4,6 +4,6 @@ Files in the root of this directory are considered OS agnostic. To implement the
 ```bash
 cp -r . ~/.
 ```
-Note that a symlink may be necessary for (Vim)[.vim/.vimrc]
+Note that a symlink may be necessary for [Vim](.vim/.vimrc)
 
 OS specific config files are under a folder with their respective name.
