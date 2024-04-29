@@ -61,5 +61,7 @@
 ;; Quarto mode for qmd files
 (package! quarto-mode)
 
+(package! zmq)
+
 ;; broken
 ;; (package! r-autoyas)

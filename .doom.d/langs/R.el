@@ -1,5 +1,6 @@
 ;;; langs/R.el -*- lexical-binding: t; -*-
 
+
 ; https://emacs.stackexchange.com/questions/8041/how-to-implement-the-piping-operator-in-ess-mode
 (defun then_R_operator ()
   "R - |> operator or 'then' pipe operator"
@@ -26,6 +27,10 @@
          "with_defaults(line_length_linter = line_length_linter(120), object_length_linter = object_length_linter(80))")
 
   ;; TODO: limit print length
+
+  ; prevent emacs from hanging when R output is slow
+  ; https://emacs.stackexchange.com/a/53316/32189
+  (setq ess-eval-visibly 'nowait) 
 
   ;; This defaults to ~10^18
   ;; Assuming these units are seconds, that's 10^13 days
