@@ -40,13 +40,18 @@ fi
 
 # Prompt line #################################################################
 
+# TODO: this isn't an alias, so why is it in .bash_aliases?
 # for codes, see https://superuser.com/questions/263040/mac-terminal-remove-text-prefixing-dollar-sign/263042
 
 # Git branch in prompt.
-parse_git_branch() {
+parseGitBranch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\W\[\033[32m\]\$(parseGitBranch)\[\033[00m\] "
+# add timestamp
+export PS1="$PS1 \t\[$(tput sgr0)\]"
+# prompt on a newline
+export PS1="$PS1\n$ "
 
 
 # Docker ######################################################################
